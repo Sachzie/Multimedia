@@ -1,29 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>My Blender Portfolio</title>
-  <link rel="stylesheet" href="style.css">
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Favicon (optional) -->
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
 </head>
 <body>
-  <header>
-    <h1>My Blender & Rotoscope Art</h1>
+  <header class="site-header">
+    <div class="container">
+      <h1>✨ My Blender & Rotoscope Art ✨</h1>
+      <p class="subtitle">A collection of 3D renders and frame-by-frame animations</p>
+    </div>
   </header>
 
   <main>
-    <section class="gallery">
-      <h2>Gallery</h2>
-      <div class="artworks">
-        <img src="assets/art1.jpg" alt="Blender Artwork 1">
-        <img src="assets/roto1.gif" alt="Rotoscope Animation 1">
-        <!-- Add more images/gifs -->
+    <section class="gallery-section">
+      <div class="container">
+        <h2 class="section-title">Gallery</h2>
+        <div class="art-grid">
+          <div class="art-card">
+            <img src="assets/art1.jpg" alt="Blender Artwork 1" />
+            <p class="caption">Blender Artwork 1</p>
+          </div>
+          <div class="art-card">
+            <img src="assets/roto1.gif" alt="Rotoscope Animation 1" />
+            <p class="caption">Rotoscope Animation 1</p>
+          </div>
+          <!-- Add more art-card divs as needed -->
+        </div>
       </div>
     </section>
   </main>
 
-  <footer>
-    <p>&copy; 2025 Your Name</p>
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2025 Your Name. All rights reserved.</p>
+    </div>
   </footer>
 </body>
 </html>
