@@ -1,32 +1,252 @@
+:root {
+  --primary: #9933ff; /* Purple for creativity */
+  --secondary: #00ccff; /* Cyan for technology */
+  --dark: #121212;
+  --darker: #080808;
+  --light: #f0f0f0;
+  --shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+}
+
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Inter', Arial, sans-serif;
   margin: 0;
-  background: #f2f2f2;
-  color: #333;
+  background: var(--darker);
+  color: var(--light);
+  line-height: 1.6;
 }
 
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Dynamic header with gradient */
 header {
-  background: #222;
+  background: linear-gradient(135deg, var(--dark), var(--darker));
   color: white;
-  padding: 1rem;
+  padding: 2rem 1rem;
   text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow);
 }
 
+header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 20% 50%, 
+    rgba(var(--primary), 0.15), 
+    transparent 60%);
+  z-index: 0;
+}
+
+header h1 {
+  position: relative;
+  z-index: 1;
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 10px rgba(var(--secondary), 0.5);
+}
+
+header p {
+  position: relative;
+  z-index: 1;
+  opacity: 0.8;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Gallery with artistic framing */
 .gallery {
-  padding: 2rem;
+  padding: 3rem 2rem;
   text-align: center;
+  background: var(--dark);
+}
+
+.gallery h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: var(--primary);
+  position: relative;
+  display: inline-block;
+}
+
+.gallery h2::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.5s ease;
+}
+
+.gallery:hover h2::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.artworks {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
 }
 
 .artworks img {
-  width: 300px;
-  margin: 1rem;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
 }
 
+.artworks img:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 15px 40px rgba(var(--secondary), 0.3);
+}
+
+.artworks img::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(var(--primary), 0.1),
+    rgba(var(--secondary), 0.05)
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.artworks img:hover::after {
+  opacity: 1;
+}
+
+/* Neon accent for animation focus */
+.neon-accent {
+  display: inline-block;
+  position: relative;
+}
+
+.neon-accent::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: -5px;
+  left: 0;
+  background-color: var(--secondary);
+  box-shadow: 0 0 10px var(--secondary), 0 0 20px var(--secondary);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+.neon-accent:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Cinematic footer */
 footer {
-  background: #222;
+  background: linear-gradient(to top, var(--dark), var(--darker));
   color: white;
   text-align: center;
-  padding: 1rem;
+  padding: 2rem 1rem;
+  position: relative;
 }
+
+footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--secondary), transparent);
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.social-links a {
+  color: white;
+  font-size: 1.5rem;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-links a:hover {
+  color: var(--secondary);
+  transform: translateY(-3px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .artworks {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  header h1 {
+    font-size: 2rem;
+  }
+}
+
+/* Animation preview modal styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  overflow: auto;
+}
+
+.modal-content {
+  margin: auto;
+  display: block;
+  max-width: 90%;
+  max-height: 90%;
+  margin-top: 5vh;
+  border: 2px solid var(--primary);
+  box-shadow: 0 0 30px rgba(var(--primary), 0.5);
+}
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.close:hover {
+  color: var(--secondary);
+}
+
