@@ -6,7 +6,7 @@
   <title>My Blender Portfolio</title>
 
   <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
 
   <!-- External CSS -->
   <link rel="stylesheet" href="style.css" />
@@ -15,36 +15,104 @@
   <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
 </head>
 <body>
-  <header class="site-header">
-    <div class="container">
-      <h1>✨ My Blender & Rotoscope Art ✨</h1>
-      <p class="subtitle">A collection of 3D renders and frame-by-frame animations</p>
-    </div>
+  <header>
+    <h1>Multimedia and Authoring</h1>
+    <p class="subtitle">A collection of 3D renders and frame-by-frame animations</p>
   </header>
 
   <main>
-    <section class="gallery-section">
-      <div class="container">
-        <h2 class="section-title">Gallery</h2>
-        <div class="art-grid">
-          <div class="art-card">
-            <img src="assets/art1.jpg" alt="Blender Artwork 1" />
-            <p class="caption">Blender Artwork 1</p>
-          </div>
-          <div class="art-card">
-            <img src="assets/roto1.gif" alt="Rotoscope Animation 1" />
-            <p class="caption">Rotoscope Animation 1</p>
-          </div>
-          <!-- Add more art-card divs as needed -->
+    <section class="video-section">
+      <h2>The Outer Space</h2>
+      <video controls width="100%">
+        <source src="assets/outer_space.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </section>
+
+    <section class="rotoscope-section">
+      <h2>Rotoscope Videos</h2>
+      <div class="artworks">
+        <div class="art-card">
+          <h3>Original Video</h3>
+          <video controls width="100%">
+            <source src="assets/original_video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
         </div>
+        <div class="art-card">
+          <h3>Animated Video</h3>
+          <video controls width="100%">
+            <source src="assets/animated_video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+    </section>
+
+    <section class="age-calculator">
+      <h2>Calculate Planet's Age</h2>
+      <form id="ageForm">
+        <label for="planet">Select a planet:</label>
+        <select id="planet" name="planet">
+          <option value="earth">Earth</option>
+          <option value="mars">Mars</option>
+          <option value="jupiter">Jupiter</option>
+          <!-- Add more planets as needed -->
+        </select>
+        <button type="submit">Calculate Age</button>
+      </form>
+      <div id="ageResult"></div>
+    </section>
+
+    <section class="planet-info">
+      <h2>Planet Ages</h2>
+      <div class="artworks">
+        <div class="art-card">
+          <p><strong>Planet:</strong> Earth</p>
+          <p><strong>Age:</strong> ~4.54 billion years</p>
+          <p><strong>Life on Earth began:</strong> ~3.5 billion years ago</p>
+        </div>
+        <div class="art-card">
+          <p><strong>Planet:</strong> Mars</p>
+          <p><strong>Age:</strong> ~4.6 billion years</p>
+          <p><strong>Life on Mars began:</strong> Unknown</p>
+        </div>
+        <div class="art-card">
+          <p><strong>Planet:</strong> Jupiter</p>
+          <p><strong>Age:</strong> ~4.6 billion years</p>
+          <p><strong>Life on Jupiter began:</strong> Unknown</p>
+        </div>
+        <!-- Add more planet info as needed -->
       </div>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="container">
-      <p>&copy; 2025 Your Name. All rights reserved.</p>
-    </div>
+  <footer>
+    <p>&copy; 2025 Your Name. All rights reserved.</p>
   </footer>
+
+  <script>
+    document.getElementById('ageForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const planet = document.getElementById('planet').value;
+      let ageMessage = '';
+
+      switch (planet) {
+        case 'earth':
+          ageMessage = 'Earth is approximately 4.54 billion years old.';
+          break;
+        case 'mars':
+          ageMessage = 'Mars is approximately 4.6 billion years old.';
+          break;
+        case 'jupiter':
+          ageMessage = 'Jupiter is approximately 4.6 billion years old.';
+          break;
+        default:
+          ageMessage = 'Unknown planet.';
+      }
+
+      document.getElementById('ageResult').innerText = ageMessage;
+    });
+  </script>
 </body>
 </html>
