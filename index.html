@@ -8,28 +8,339 @@
   <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
 
-  <!-- External CSS -->
-  <link rel="stylesheet" href="style.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+    }
+
+    /* Navigation Styles */
+    nav {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 1rem 0;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 0 2rem;
+    }
+
+    .nav-link {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav-link::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.6s;
+    }
+
+    .nav-link:hover::before {
+      left: 100%;
+    }
+
+    .nav-link:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    header {
+      text-align: center;
+      padding: 4rem 2rem;
+      color: white;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    section {
+      background: rgba(255, 255, 255, 0.95);
+      margin: 2rem 0;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(10px);
+    }
+
+    h2 {
+      color: #4a5568;
+      margin-bottom: 1.5rem;
+      font-size: 2rem;
+      text-align: center;
+    }
+
+    .video-section video {
+      display: block;
+      margin: 0 auto;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .artworks {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .art-card {
+      background: #f8f9fa;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .art-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .art-card h3 {
+      color: #4a5568;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .art-card video {
+      border-radius: 8px;
+    }
+
+    /* Planet Image Styles */
+    .planet-image {
+      width: 100%;
+      height: 200px;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      font-size: 1.2rem;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+      background-size: cover;
+      background-position: center;
+    }
+
+    .planet-info-content p {
+      margin: 0.5rem 0;
+      font-size: 1rem;
+      line-height: 1.4;
+    }
+
+    .planet-info-content strong {
+      color: #2c5282;
+    }
+
+    /* Planet-specific gradients */
+    .mercury-bg { background: linear-gradient(135deg, #8C7853 0%, #D4AF37 100%); }
+    .venus-bg { background: linear-gradient(135deg, #FFA500 0%, #FF6347 100%); }
+    .earth-bg { background: linear-gradient(135deg, #4169E1 0%, #32CD32 100%); }
+    .mars-bg { background: linear-gradient(135deg, #CD5C5C 0%, #B22222 100%); }
+    .jupiter-bg { background: linear-gradient(135deg, #DAA520 0%, #FF8C00 100%); }
+    .saturn-bg { background: linear-gradient(135deg, #F4A460 0%, #DEB887 100%); }
+    .uranus-bg { background: linear-gradient(135deg, #4FD0E7 0%, #3F51B5 100%); }
+    .neptune-bg { background: linear-gradient(135deg, #4169E1 0%, #191970 100%); }
+    .pluto-bg { background: linear-gradient(135deg, #696969 0%, #2F4F4F 100%); }
+
+    /* Age Calculator Styles */
+    .calculator-form {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 2rem;
+      border-radius: 15px;
+      color: white;
+      margin-bottom: 2rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      background: rgba(255, 255, 255, 0.9);
+      color: #333;
+    }
+
+    button {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      border: 2px solid white;
+      padding: 0.75rem 2rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background: white;
+      color: #667eea;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .age-results {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .planet-result {
+      background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+      color: white;
+      padding: 1.5rem;
+      border-radius: 10px;
+      text-align: center;
+      transform: scale(0);
+      transition: transform 0.3s ease;
+    }
+
+    .planet-result.show {
+      transform: scale(1);
+    }
+
+    .planet-result h4 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .planet-result .age {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+
+    .planet-result .info {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: white;
+      background: rgba(0, 0, 0, 0.2);
+      margin-top: 2rem;
+    }
+
+    /* Smooth scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .nav-container {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      header h1 {
+        font-size: 2rem;
+      }
+      
+      .age-results {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 
   <!-- Favicon (optional) -->
   <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
 </head>
 <body>
-  <header>
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-container">
+      <a href="#home" class="nav-link">Home</a>
+      <a href="#solar-system" class="nav-link">Solar System</a>
+      <a href="#rotoscope" class="nav-link">Rotoscope</a>
+      <a href="#planets" class="nav-link">Planets</a>
+    </div>
+  </nav>
+
+  <header id="home">
     <h1>Multimedia and Authoring</h1>
-    <p class="subtitle">A collection of 3D renders and frame-by-frame animations</p>
+    <p class="subtitle">Sachzie Sofia P. Ilagan</p>
+    <p class="subtitle">BSIT-NS-2A</p>
   </header>
 
   <main>
-    <section class="video-section">
-      <h2>The Outer Space</h2>
-      <video controls width="70%">
-        <source src="assets/outer_space.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-    </section>
+    <section id="solar-system" class="video-section">
+  <h2>Solar System</h2>
+  <video controls width="70%">
+    <source src="assets/outer_space.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <div class="video-description" style="margin-right: 20px;">
+    <br> </br>
+    <p>
+      With the use of Blender explore the wonders of our solar system through this captivating 3D journey into outer space. 
+    </p>
+  </div>
+</section>
 
-    <section class="rotoscope-section">
+    <section id="rotoscope" class="rotoscope-section">
       <h2>Rotoscope Videos</h2>
       <div class="artworks">
         <div class="art-card">
@@ -40,78 +351,383 @@
           </video>
         </div>
         <div class="art-card">
-          <h3>Animated Video</h3>
+          <h3>Week 1 - Animated Video</h3>
           <video controls width="100%">
             <source src="assets/animated_video.mp4" type="video/mp4">
             Your browser does not support the video tag.
           </video>
         </div>
       </div>
+      <!--  week 1   -->
+<div class="artworks">
+        <div class="art-card">
+          <h3>Original Video</h3>
+          <video controls width="100%">
+            <source src="assets/original_video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="art-card">
+          <h3>Week 2 - Animated Video</h3>
+          <video controls width="100%">
+            <source src="assets/animated_video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+
+      <!-- week 2  -->
+       <div class="artworks">
+        <div class="art-card">
+          <h3>Original Video</h3>
+          <video controls width="100%">
+            <source src="assets/original_video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="art-card">
+          <h3>Week 3 - Animated Video</h3>
+          <video controls width="100%">
+            <source src="assets/animated_video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+
+      <!-- week3 -->
+       <div class="artworks">
+        <div class="art-card">
+          <h3>Original Video</h3>
+          <video controls width="100%">
+            <source src="assets/original_video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="art-card">
+          <h3>Week 4 - Animated Video</h3>
+          <video controls width="100%">
+            <source src="assets/animated_video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+      <!-- week 4 -->
+<div class="artworks">
+        <div class="art-card">
+          <h3>Original Video</h3>
+          <video controls width="100%">
+            <source src="assets/original_video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="art-card">
+          <h3>Week 5 - Animated Video</h3>
+          <video controls width="100%">
+            <source src="assets/animated_video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+      <!-- week 5 -->
+       <div class="artworks">
+        <div class="art-card">
+          <h3>Original Video</h3>
+          <video controls width="100%">
+            <source src="assets/original_video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="art-card">
+          <h3>Week 6 - Animated Video</h3>
+          <video controls width="100%">
+            <source src="assets/animated_video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+      <!-- week 6 -->
+       <div class="artworks">
+        <div class="art-card">
+          <h3>Original Video</h3>
+          <video controls width="100%">
+            <source src="assets/original_video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="art-card">
+          <h3>Week 7 - Animated Video</h3>
+          <video controls width="100%">
+            <source src="assets/animated_video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+      <!-- week 7 -->
+       <div class="artworks">
+        <div class="art-card">
+          <h3>Original Video</h3>
+          <video controls width="100%">
+            <source src="assets/original_video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="art-card">
+          <h3>Week 8 - Animated Video</h3>
+          <video controls width="100%">
+            <source src="assets/animated_video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+
+      <!-- week 8 -->
+       <div class="artworks">
+        <div class="art-card">
+          <h3>Original Video</h3>
+          <video controls width="100%">
+            <source src="assets/original_video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="art-card">
+          <h3>Week 9 - Animated Video</h3>
+          <video controls width="100%">
+            <source src="assets/original_video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+      <!-- week 9 -->
+       <div class="artworks">
+        <div class="art-card">
+          <h3>Original Video</h3>
+          <video controls width="100%">
+            <source src="assets/original_video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="art-card">
+          <h3>Week 10 - Animated Video</h3>
+          <video controls width="100%">
+            <source src="assets/animated_video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+    
+
+</div>
+
+
     </section>
 
     <section class="age-calculator">
-      <h2>Calculate Planet's Age</h2>
-      <form id="ageForm">
-        <label for="planet">Select a planet:</label>
-        <select id="planet" name="planet">
-          <option value="earth">Earth</option>
-          <option value="mars">Mars</option>
-          <option value="jupiter">Jupiter</option>
-          <!-- Add more planets as needed -->
-        </select>
-        <button type="submit">Calculate Age</button>
-      </form>
-      <div id="ageResult"></div>
+      <h2>Planetary Age Calculator</h2>
+      <div class="calculator-form">
+        <form id="ageForm">
+          <div class="form-group">
+            <label for="userAge">Enter your age on Earth:</label>
+            <input type="number" id="userAge" name="userAge" min="1" max="150" placeholder="e.g., 25" required>
+          </div>
+          <button type="submit">Calculate My Age on All Planets</button>
+        </form>
+      </div>
+      <div id="ageResults" class="age-results"></div>
     </section>
 
-    <section class="planet-info">
-      <h2>Planet Ages</h2>
-      <div class="artworks">
-        <div class="art-card">
-          <p><strong>Planet:</strong> Earth</p>
-          <p><strong>Age:</strong> ~4.54 billion years</p>
-          <p><strong>Life on Earth began:</strong> ~3.5 billion years ago</p>
-        </div>
-        <div class="art-card">
-          <p><strong>Planet:</strong> Mars</p>
-          <p><strong>Age:</strong> ~4.6 billion years</p>
-          <p><strong>Life on Mars began:</strong> Unknown</p>
-        </div>
-        <div class="art-card">
-          <p><strong>Planet:</strong> Jupiter</p>
-          <p><strong>Age:</strong> ~4.6 billion years</p>
-          <p><strong>Life on Jupiter began:</strong> Unknown</p>
-        </div>
-        <!-- Add more planet info as needed -->
+   <section id="planets" class="planet-info">
+  <h2>Planet Information</h2>
+  <div class="artworks">
+    <div class="art-card">
+      <div class="planet-image mercury-bg">
+        Mercury Image
       </div>
-    </section>
-  </main>
+      <div class="planet-info-content">
+        <p><strong>Planet:</strong> Mercury</p>
+        <p><strong>Age:</strong> ~4.5 billion years</p>
+        <p><strong>Orbital Period:</strong> 88 Earth days</p>
+        <p><strong>Day Length:</strong> 59 Earth days</p>
+      </div>
+    </div>
+    <div class="art-card">
+      <div class="planet-image venus-bg">
+        Venus Image
+      </div>
+      <div class="planet-info-content">
+        <p><strong>Planet:</strong> Venus</p>
+        <p><strong>Age:</strong> ~4.5 billion years</p>
+        <p><strong>Orbital Period:</strong> 225 Earth days</p>
+        <p><strong>Day Length:</strong> 243 Earth days</p>
+      </div>
+    </div>
+    <div class="art-card">
+      <div class="planet-image earth-bg">
+        Earth Image
+      </div>
+      <div class="planet-info-content">
+        <p><strong>Planet:</strong> Earth</p>
+        <p><strong>Age:</strong> ~4.54 billion years</p>
+        <p><strong>Orbital Period:</strong> 365.25 days</p>
+        <p><strong>Day Length:</strong> 24 hours</p>
+      </div>
+    </div>
+    <div class="art-card">
+      <div class="planet-image mars-bg">
+        Mars Image
+      </div>
+      <div class="planet-info-content">
+        <p><strong>Planet:</strong> Mars</p>
+        <p><strong>Age:</strong> ~4.6 billion years</p>
+        <p><strong>Orbital Period:</strong> 687 Earth days</p>
+        <p><strong>Day Length:</strong> 24.6 hours</p>
+      </div>
+    </div>
+    <div class="art-card">
+      <div class="planet-image jupiter-bg">
+        Jupiter Image
+      </div>
+      <div class="planet-info-content">
+        <p><strong>Planet:</strong> Jupiter</p>
+        <p><strong>Age:</strong> ~4.6 billion years</p>
+        <p><strong>Orbital Period:</strong> 12 Earth years</p>
+        <p><strong>Day Length:</strong> 9.9 hours</p>
+      </div>
+    </div>
+    <div class="art-card">
+      <div class="planet-image saturn-bg">
+        Saturn Image
+      </div>
+      <div class="planet-info-content">
+        <p><strong>Planet:</strong> Saturn</p>
+        <p><strong>Age:</strong> ~4.5 billion years</p>
+        <p><strong>Orbital Period:</strong> 29 Earth years</p>
+        <p><strong>Day Length:</strong> 10.7 hours</p>
+      </div>
+    </div>
+    <div class="art-card">
+      <div class="planet-image uranus-bg">
+        Uranus Image
+      </div>
+      <div class="planet-info-content">
+        <p><strong>Planet:</strong> Uranus</p>
+        <p><strong>Age:</strong> ~4.5 billion years</p>
+        <p><strong>Orbital Period:</strong> 84 Earth years</p>
+        <p><strong>Day Length:</strong> 17.2 hours</p>
+      </div>
+    </div>
+    <div class="art-card">
+      <div class="planet-image neptune-bg">
+        Neptune Image
+      </div>
+      <div class="planet-info-content">
+        <p><strong>Planet:</strong> Neptune</p>
+        <p><strong>Age:</strong> ~4.5 billion years</p>
+        <p><strong>Orbital Period:</strong> 165 Earth years</p>
+        <p><strong>Day Length:</strong> 16.1 hours</p>
+      </div>
+    </div>
+    <div class="art-card">
+      <div class="planet-image pluto-bg">
+        Pluto Image
+      </div>
+      <div class="planet-info-content">
+        <p><strong>Planet:</strong> Pluto</p>
+        <p><strong>Age:</strong> ~4.5 billion years</p>
+        <p><strong>Orbital Period:</strong> 248 Earth years</p>
+        <p><strong>Day Length:</strong> 153.3 hours</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 
   <footer>
-    <p>&copy; 2025 Your Name. All rights reserved.</p>
+    <p>&copy; Sachzie Sofia P. Ilagan </p>
   </footer>
 
   <script>
+  // Planet data with orbital periods in Earth years
+  const planets = {
+    mercury: { name: 'Mercury', period: 0.241, color: '#8c7853' },
+    venus: { name: 'Venus', period: 0.615, color: '#ffc649' },
+    earth: { name: 'Earth', period: 1, color: '#6b93d6' },
+    mars: { name: 'Mars', period: 1.88, color: '#c1440e' },
+    jupiter: { name: 'Jupiter', period: 11.86, color: '#d8ca9d' },
+    saturn: { name: 'Saturn', period: 29.46, color: '#fab27b' },
+    uranus: { name: 'Uranus', period: 84.01, color: '#4fd0e7' },
+    neptune: { name: 'Neptune', period: 164.8, color: '#4b70dd' },
+    pluto: { name: 'Pluto', period: 248, color: '#bfa5a0' } // Pluto added
+  };
+
+
+
     document.getElementById('ageForm').addEventListener('submit', function(event) {
       event.preventDefault();
-      const planet = document.getElementById('planet').value;
-      let ageMessage = '';
-
-      switch (planet) {
-        case 'earth':
-          ageMessage = 'Earth is approximately 4.54 billion years old.';
-          break;
-        case 'mars':
-          ageMessage = 'Mars is approximately 4.6 billion years old.';
-          break;
-        case 'jupiter':
-          ageMessage = 'Jupiter is approximately 4.6 billion years old.';
-          break;
-        default:
-          ageMessage = 'Unknown planet.';
+      
+      const userAge = parseInt(document.getElementById('userAge').value);
+      const resultsContainer = document.getElementById('ageResults');
+      
+      if (!userAge || userAge <= 0) {
+        resultsContainer.innerHTML = '<p style="color: red; text-align: center;">Please enter a valid age!</p>';
+        return;
       }
+      
+      // Clear previous results
+      resultsContainer.innerHTML = '';
+      
+      // Calculate age for each planet
+      Object.entries(planets).forEach(([key, planet], index) => {
+        const planetAge = (userAge / planet.period).toFixed(1);
+        
+        const planetResult = document.createElement('div');
+        planetResult.className = 'planet-result';
+        planetResult.style.background = `linear-gradient(135deg, ${planet.color}, ${adjustBrightness(planet.color, -20)})`;
+        
+        planetResult.innerHTML = `
+          <h4>${planet.name}</h4>
+          <div class="age">${planetAge}</div>
+          <div class="info">years old</div>
+        `;
+        
+        resultsContainer.appendChild(planetResult);
+        
+        // Animate the appearance
+        setTimeout(() => {
+          planetResult.classList.add('show');
+        }, index * 100);
+      });
+    });
 
-      document.getElementById('ageResult').innerText = ageMessage;
+    // Function to adjust color brightness
+    function adjustBrightness(color, amount) {
+      const usePound = false;
+      const col = (color[0] === '#') ? color.slice(1) : color;
+      const num = parseInt(col, 16);
+      let r = (num >> 16) + amount;
+      let b = ((num >> 8) & 0x00FF) + amount;
+      let g = (num & 0x0000FF) + amount;
+      
+      r = (r > 255) ? 255 : (r < 0) ? 0 : r;
+      b = (b > 255) ? 255 : (b < 0) ? 0 : b;
+      g = (g > 255) ? 255 : (g < 0) ? 0 : g;
+      
+      return (usePound ? '#' : '') + (g | (b << 8) | (r << 16)).toString(16);
+    }
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href').substring(1);
+        const targetElement = document.getElementById(targetId);
+        
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
     });
   </script>
 </body>
