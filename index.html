@@ -8,395 +8,324 @@
   <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<style>
+  :root {
+    --primary: #667eea;
+    --secondary: #764ba2;
+    --accent: #ff6b6b;
+    --dark: #121212;
+    --light: #f0f0f0;
+  }
 
-    body {
-      font-family: 'Inter', sans-serif;
-      line-height: 1.6;
-      color: #333;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      min-height: 100vh;
-    }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-    /* Navigation Styles */
-    nav {
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      padding: 1rem 0;
-    }
+  html {
+    scroll-behavior: smooth;
+  }
 
+  body {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    color: rgb(0, 0, 0);
+    min-height: 100vh;
+  }
+
+  nav {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding: 0 2rem;
+  }
+
+  .nav-link {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    position: relative;
+    transition: all 0.3s ease;
+    overflow: hidden;
+  }
+
+  .nav-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+  }
+
+  .nav-link:hover::before {
+    left: 100%;
+  }
+
+  .nav-link:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  }
+
+  header {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: white;
+  }
+
+  header h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  .subtitle {
+    font-size: 1.2rem;
+    opacity: 0.9;
+  }
+
+  main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  section {
+    background: rgba(255, 255, 255, 0.95);
+    margin: 2rem 0;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    color: #333;
+  }
+
+  h2 {
+    color: var(--primary);
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+
+  h2::after {
+    content: '';
+    position: absolute;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -10px;
+    border-radius: 3px;
+  }
+
+  .rotoscope-video {
+    max-width: 80%;
+    margin: 0 auto;
+    border-radius: 10px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  }
+
+  .video-section video {
+    display: block;
+    margin: 0 auto;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+  }
+
+  .video-section video:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+  }
+
+  .week-card video {
+  max-width: 500px;
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+.weekly-progress {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  justify-items: center;
+}
+  .artworks {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .art-card {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    color: #333;
+  }
+
+  .art-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  }
+
+  .art-card h3,
+  .art-card p {
+    color: #333;
+    text-align: center;
+  }
+
+  .art-card video {
+    border-radius: 8px;
+    width: 100%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .calculator-form {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    padding: 2rem;
+    border-radius: 15px;
+    color: white;
+    margin-bottom: 2rem;
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+
+  input, select {
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+  }
+
+  button {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 2px solid white;
+    padding: 0.75rem 2rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  button:hover {
+    background: white;
+    color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  .age-results {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .planet-result {
+    background: linear-gradient(135deg, var(--accent), #ee5a24);
+    color: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    text-align: center;
+    transform: scale(0);
+    transition: transform 0.3s ease;
+  }
+
+  .planet-result.show {
+    transform: scale(1);
+  }
+
+  .planet-result h4 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .planet-result .age {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+
+  .planet-result .info {
+    font-size: 0.9rem;
+    opacity: 0.9;
+  }
+
+  footer {
+    text-align: center;
+    padding: 2rem;
+    background: rgba(0, 0, 0, 0.3);
+    margin-top: 2rem;
+    color: white;
+  }
+
+  /* Color fix for light sections */
+  .rotoscope-section,
+  .week-card {
+    color: #333;
+  }
+
+  @media (max-width: 768px) {
     .nav-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      padding: 0 2rem;
-    }
-
-    .nav-link {
-      color: white;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1.1rem;
-      padding: 0.5rem 1rem;
-      border-radius: 8px;
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .nav-link::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-      transition: left 0.6s;
-    }
-
-    .nav-link:hover::before {
-      left: 100%;
-    }
-
-    .nav-link:hover {
-      background: rgba(255, 255, 255, 0.2);
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    }
-
-    header {
-      text-align: center;
-      padding: 4rem 2rem;
-      color: white;
+      flex-direction: column;
+      gap: 1rem;
     }
 
     header h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    }
-
-    .subtitle {
-      font-size: 1.2rem;
-      opacity: 0.9;
-    }
-
-    main {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 2rem;
-    }
-
-    section {
-      background: rgba(255, 255, 255, 0.95);
-      margin: 2rem 0;
-      padding: 2rem;
-      border-radius: 15px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      backdrop-filter: blur(10px);
-    }
-
-    h2 {
-      color: #4a5568;
-      margin-bottom: 1.5rem;
       font-size: 2rem;
-      text-align: center;
     }
 
-    .video-section video {
-      display: block;
-      margin: 0 auto;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    }
-
-    .artworks {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-
-    .art-card {
-      background: #f8f9fa;
-      padding: 1.5rem;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease;
-    }
-
-    .art-card:hover {
-      transform: translateY(-5px);
-    }
-
-    .art-card h3 {
-      color: #4a5568;
-      margin-bottom: 1rem;
-      text-align: center;
-    }
-
-    .art-card video {
-      border-radius: 8px;
-    }
-
-    /* Rotoscope Section Styles */
-    .rotoscope-section {
-      background: rgba(255, 255, 255, 0.95);
-      margin: 2rem 0;
-      padding: 2rem;
-      border-radius: 15px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      backdrop-filter: blur(10px);
-    }
-
-    .original-video-container {
-      text-align: center;
-      margin-bottom: 3rem;
-      padding: 2rem;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      border-radius: 15px;
-      color: white;
-    }
-
-    .original-video-container h3 {
-      font-size: 1.8rem;
-      margin-bottom: 1.5rem;
-      color: white;
+    .age-results,
+    .weekly-progress {
+      grid-template-columns: 1fr;
     }
 
     .original-video-container video {
-      max-width: 80%;
-      border-radius: 10px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      max-width: 100%;
     }
+  }
+</style>
 
-    .progress-title {
-      text-align: center;
-      color: #4a5568;
-      font-size: 1.5rem;
-      margin-bottom: 2rem;
-      padding-bottom: 1rem;
-      border-bottom: 3px solid #667eea;
-    }
 
-    .weekly-progress {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      margin-bottom: 2rem;
-    }
-
-    .week-card {
-      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-      padding: 1.5rem;
-      border-radius: 15px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-      transition: all 0.3s ease;
-      border: 2px solid transparent;
-    }
-
-    .week-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-      border-color: #667eea;
-    }
-
-    .week-card h3 {
-      color: #4a5568;
-      margin-bottom: 1rem;
-      text-align: center;
-      font-size: 1.3rem;
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      font-weight: 600;
-    }
-
-    .week-card video {
-      width: 100%;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease;
-    }
-
-    .week-card:hover video {
-      transform: scale(1.02);
-    }
-
-    /* Planet Image Styles */
-    .planet-image {
-      width: 100%;
-      height: 200px;
-      border-radius: 8px;
-      margin-bottom: 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-weight: bold;
-      font-size: 1.2rem;
-      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-      background-size: cover;
-      background-position: center;
-    }
-
-    .planet-info-content p {
-      margin: 0.5rem 0;
-      font-size: 1rem;
-      line-height: 1.4;
-    }
-
-    .planet-info-content strong {
-      color: #2c5282;
-    }
-
-    /* Planet-specific gradients */
-    .mercury-bg { background: linear-gradient(135deg, #8C7853 0%, #D4AF37 100%); }
-    .venus-bg { background: linear-gradient(135deg, #FFA500 0%, #FF6347 100%); }
-    .earth-bg { background: linear-gradient(135deg, #4169E1 0%, #32CD32 100%); }
-    .mars-bg { background: linear-gradient(135deg, #CD5C5C 0%, #B22222 100%); }
-    .jupiter-bg { background: linear-gradient(135deg, #DAA520 0%, #FF8C00 100%); }
-    .saturn-bg { background: linear-gradient(135deg, #F4A460 0%, #DEB887 100%); }
-    .uranus-bg { background: linear-gradient(135deg, #4FD0E7 0%, #3F51B5 100%); }
-    .neptune-bg { background: linear-gradient(135deg, #4169E1 0%, #191970 100%); }
-    .pluto-bg { background: linear-gradient(135deg, #696969 0%, #2F4F4F 100%); }
-
-    /* Age Calculator Styles */
-    .calculator-form {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      padding: 2rem;
-      border-radius: 15px;
-      color: white;
-      margin-bottom: 2rem;
-    }
-
-    .form-group {
-      margin-bottom: 1.5rem;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: 600;
-      font-size: 1.1rem;
-    }
-
-    input, select {
-      width: 100%;
-      padding: 0.75rem;
-      border: none;
-      border-radius: 8px;
-      font-size: 1rem;
-      background: rgba(255, 255, 255, 0.9);
-      color: #333;
-    }
-
-    button {
-      background: rgba(255, 255, 255, 0.2);
-      color: white;
-      border: 2px solid white;
-      padding: 0.75rem 2rem;
-      border-radius: 8px;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    button:hover {
-      background: white;
-      color: #667eea;
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    }
-
-    .age-results {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1rem;
-      margin-top: 2rem;
-    }
-
-    .planet-result {
-      background: linear-gradient(135deg, #ff6b6b, #ee5a24);
-      color: white;
-      padding: 1.5rem;
-      border-radius: 10px;
-      text-align: center;
-      transform: scale(0);
-      transition: transform 0.3s ease;
-    }
-
-    .planet-result.show {
-      transform: scale(1);
-    }
-
-    .planet-result h4 {
-      font-size: 1.3rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .planet-result .age {
-      font-size: 2rem;
-      font-weight: bold;
-      margin-bottom: 0.5rem;
-    }
-
-    .planet-result .info {
-      font-size: 0.9rem;
-      opacity: 0.9;
-    }
-
-    footer {
-      text-align: center;
-      padding: 2rem;
-      color: white;
-      background: rgba(0, 0, 0, 0.2);
-      margin-top: 2rem;
-    }
-
-    /* Smooth scrolling */
-    html {
-      scroll-behavior: smooth;
-    }
-
-    /* Responsive design */
-    @media (max-width: 768px) {
-      .nav-container {
-        flex-direction: column;
-        gap: 1rem;
-      }
-      
-      header h1 {
-        font-size: 2rem;
-      }
-      
-      .age-results {
-        grid-template-columns: 1fr;
-      }
-
-      .weekly-progress {
-        grid-template-columns: 1fr;
-      }
-
-      .original-video-container video {
-        max-width: 100%;
-      }
-    }
-  </style>
 
   <!-- Favicon (optional) -->
   <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
@@ -439,15 +368,17 @@
       <!-- Original Video Section -->
       <div class="original-video-container">
         <h3>Original Video</h3>
-        <video controls width="100%">
+        <video controls width="70%">
           <source src="assets/original_video.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
+        <div class="video-description" style="margin-right: 20px;"></div>
       </div>
 
       <!-- Weekly Progress Section -->
-      <div class="progress-title">Weekly Animation Progress</div>
-      
+      <div class="progress-title"></div>
+       <h3>Weekly Progress Videos
+       </h3>
       <div class="weekly-progress">
         <div class="week-card">
           <h3>Week 1 - Animated Video</h3>
@@ -545,110 +476,120 @@
       <div id="ageResults" class="age-results"></div>
     </section>
 
-    <section id="planets" class="planet-info">
-      <h2>Planet Information</h2>
-      <div class="artworks">
-        <div class="art-card">
-          <div class="planet-image mercury-bg">
-            Mercury Image
-          </div>
-          <div class="planet-info-content">
-            <p><strong>Planet:</strong> Mercury</p>
-            <p><strong>Age:</strong> ~4.5 billion years</p>
-            <p><strong>Orbital Period:</strong> 88 Earth days</p>
-            <p><strong>Day Length:</strong> 59 Earth days</p>
-          </div>
-        </div>
-        <div class="art-card">
-          <div class="planet-image venus-bg">
-            Venus Image
-          </div>
-          <div class="planet-info-content">
-            <p><strong>Planet:</strong> Venus</p>
-            <p><strong>Age:</strong> ~4.5 billion years</p>
-            <p><strong>Orbital Period:</strong> 225 Earth days</p>
-            <p><strong>Day Length:</strong> 243 Earth days</p>
-          </div>
-        </div>
-        <div class="art-card">
-          <div class="planet-image earth-bg">
-            Earth Image
-          </div>
-          <div class="planet-info-content">
-            <p><strong>Planet:</strong> Earth</p>
-            <p><strong>Age:</strong> ~4.54 billion years</p>
-            <p><strong>Orbital Period:</strong> 365.25 days</p>
-            <p><strong>Day Length:</strong> 24 hours</p>
-          </div>
-        </div>
-        <div class="art-card">
-          <div class="planet-image mars-bg">
-            Mars Image
-          </div>
-          <div class="planet-info-content">
-            <p><strong>Planet:</strong> Mars</p>
-            <p><strong>Age:</strong> ~4.6 billion years</p>
-            <p><strong>Orbital Period:</strong> 687 Earth days</p>
-            <p><strong>Day Length:</strong> 24.6 hours</p>
-          </div>
-        </div>
-        <div class="art-card">
-          <div class="planet-image jupiter-bg">
-            Jupiter Image
-          </div>
-          <div class="planet-info-content">
-            <p><strong>Planet:</strong> Jupiter</p>
-            <p><strong>Age:</strong> ~4.6 billion years</p>
-            <p><strong>Orbital Period:</strong> 12 Earth years</p>
-            <p><strong>Day Length:</strong> 9.9 hours</p>
-          </div>
-        </div>
-        <div class="art-card">
-          <div class="planet-image saturn-bg">
-            Saturn Image
-          </div>
-          <div class="planet-info-content">
-            <p><strong>Planet:</strong> Saturn</p>
-            <p><strong>Age:</strong> ~4.5 billion years</p>
-            <p><strong>Orbital Period:</strong> 29 Earth years</p>
-            <p><strong>Day Length:</strong> 10.7 hours</p>
-          </div>
-        </div>
-        <div class="art-card">
-          <div class="planet-image uranus-bg">
-            Uranus Image
-          </div>
-          <div class="planet-info-content">
-            <p><strong>Planet:</strong> Uranus</p>
-            <p><strong>Age:</strong> ~4.5 billion years</p>
-            <p><strong>Orbital Period:</strong> 84 Earth years</p>
-            <p><strong>Day Length:</strong> 17.2 hours</p>
-          </div>
-        </div>
-        <div class="art-card">
-          <div class="planet-image neptune-bg">
-            Neptune Image
-          </div>
-          <div class="planet-info-content">
-            <p><strong>Planet:</strong> Neptune</p>
-            <p><strong>Age:</strong> ~4.5 billion years</p>
-            <p><strong>Orbital Period:</strong> 165 Earth years</p>
-            <p><strong>Day Length:</strong> 16.1 hours</p>
-          </div>
-        </div>
-        <div class="art-card">
-          <div class="planet-image pluto-bg">
-            Pluto Image
-          </div>
-          <div class="planet-info-content">
-            <p><strong>Planet:</strong> Pluto</p>
-            <p><strong>Age:</strong> ~4.5 billion years</p>
-            <p><strong>Orbital Period:</strong> 248 Earth years</p>
-            <p><strong>Day Length:</strong> 153.3 hours</p>
-          </div>
-        </div>
+  <section id="planets" class="planet-info">
+  <h2>Planet Information</h2>
+  <div class="artworks">
+
+    <div class="art-card">
+      <div class="planet-video">
+        <video src="Blendervids/mercury.mp4" autoplay muted loop playsinline></video>
       </div>
-    </section>
+      <div class="planet-info-content">
+        <p><strong>Planet:</strong> Mercury</p>
+        <p><strong>Age:</strong> ~4.5 billion years</p>
+        <p><strong>Orbital Period:</strong> 88 Earth days</p>
+        <p><strong>Day Length:</strong> 59 Earth days</p>
+      </div>
+    </div>
+
+    <div class="art-card">
+      <div class="planet-video">
+        <video src="Blendervids/venus.mp4" autoplay muted loop playsinline></video>
+      </div>
+      <div class="planet-info-content">
+        <p><strong>Planet:</strong> Venus</p>
+        <p><strong>Age:</strong> ~4.5 billion years</p>
+        <p><strong>Orbital Period:</strong> 225 Earth days</p>
+        <p><strong>Day Length:</strong> 243 Earth days</p>
+      </div>
+    </div>
+
+    <div class="art-card">
+      <div class="planet-video">
+        <video src="Blendervids/earth.mp4" autoplay muted loop playsinline></video>
+      </div>
+      <div class="planet-info-content">
+        <p><strong>Planet:</strong> Earth</p>
+        <p><strong>Age:</strong> ~4.54 billion years</p>
+        <p><strong>Orbital Period:</strong> 365.25 days</p>
+        <p><strong>Day Length:</strong> 24 hours</p>
+      </div>
+    </div>
+
+    <div class="art-card">
+      <div class="planet-video">
+        <video src="Blendervids/mars.mp4" autoplay muted loop playsinline></video>
+      </div>
+      <div class="planet-info-content">
+        <p><strong>Planet:</strong> Mars</p>
+        <p><strong>Age:</strong> ~4.6 billion years</p>
+        <p><strong>Orbital Period:</strong> 687 Earth days</p>
+        <p><strong>Day Length:</strong> 24.6 hours</p>
+      </div>
+    </div>
+
+    <div class="art-card">
+      <div class="planet-video">
+        <video src="Blendervids/jupiter.mp4" autoplay muted loop playsinline></video>
+      </div>
+      <div class="planet-info-content">
+        <p><strong>Planet:</strong> Jupiter</p>
+        <p><strong>Age:</strong> ~4.6 billion years</p>
+        <p><strong>Orbital Period:</strong> 12 Earth years</p>
+        <p><strong>Day Length:</strong> 9.9 hours</p>
+      </div>
+    </div>
+
+    <div class="art-card">
+      <div class="planet-video">
+        <video src="Blendervids/saturn.mp4" autoplay muted loop playsinline></video>
+      </div>
+      <div class="planet-info-content">
+        <p><strong>Planet:</strong> Saturn</p>
+        <p><strong>Age:</strong> ~4.5 billion years</p>
+        <p><strong>Orbital Period:</strong> 29 Earth years</p>
+        <p><strong>Day Length:</strong> 10.7 hours</p>
+      </div>
+    </div>
+
+    <div class="art-card">
+      <div class="planet-video">
+        <video src="Blendervids/uranus.mp4" autoplay muted loop playsinline></video>
+      </div>
+      <div class="planet-info-content">
+        <p><strong>Planet:</strong> Uranus</p>
+        <p><strong>Age:</strong> ~4.5 billion years</p>
+        <p><strong>Orbital Period:</strong> 84 Earth years</p>
+        <p><strong>Day Length:</strong> 17.2 hours</p>
+      </div>
+    </div>
+
+    <div class="art-card">
+      <div class="planet-video">
+        <video src="Blendervids/neptune.mp4" autoplay muted loop playsinline></video>
+      </div>
+      <div class="planet-info-content">
+        <p><strong>Planet:</strong> Neptune</p>
+        <p><strong>Age:</strong> ~4.5 billion years</p>
+        <p><strong>Orbital Period:</strong> 165 Earth years</p>
+        <p><strong>Day Length:</strong> 16.1 hours</p>
+      </div>
+    </div>
+
+    <div class="art-card">
+      <div class="planet-video">
+        <video src="Blendervids/pluto.mp4" autoplay muted loop playsinline></video>
+      </div>
+      <div class="planet-info-content">
+        <p><strong>Planet:</strong> Pluto</p>
+        <p><strong>Age:</strong> ~4.5 billion years</p>
+        <p><strong>Orbital Period:</strong> 248 Earth years</p>
+        <p><strong>Day Length:</strong> 153.3 hours</p>
+      </div>
+    </div>
+
+  </div>
+</section>
   </main>
 
   <footer>
