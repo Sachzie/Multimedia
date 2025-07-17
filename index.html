@@ -55,7 +55,7 @@
   }
 
   .nav-link {
-    color: white;
+    color: rgb(0, 0, 0);
     text-decoration: none;
     font-weight: 600;
     font-size: 1.1rem;
@@ -139,6 +139,62 @@
     border-radius: 3px;
   }
 
+  /* About Section Styles */
+  .about-section {
+    padding: 3rem 2rem;
+  }
+
+  .about-content {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    margin-top: 2rem;
+  }
+
+  .about-image {
+    flex: 0 0 300px;
+    text-align: center;
+  }
+
+  .about-image img {
+    width: 100%;
+    max-width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .about-image img:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.3);
+  }
+
+  .about-text {
+    flex: 1;
+    padding-left: 2rem;
+  }
+
+  .about-text h3 {
+    color: var(--primary);
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+
+  .about-text p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 1.5rem;
+  }
+
+  .about-text .highlight {
+    color: var(--secondary);
+    font-weight: 600;
+  }
+
   .rotoscope-video {
     max-width: 80%;
     margin: 0 auto;
@@ -160,18 +216,20 @@
   }
 
   .week-card video {
-  max-width: 500px;
-  width: 100%;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-}
-.weekly-progress {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  justify-items: center;
-}
+    max-width: 500px;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .weekly-progress {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    justify-items: center;
+  }
+
   .artworks {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -314,6 +372,20 @@
       font-size: 2rem;
     }
 
+    .about-content {
+      flex-direction: column;
+      gap: 2rem;
+      text-align: center;
+    }
+
+    .about-image {
+      flex: none;
+    }
+
+    .about-text {
+      padding-left: 0;
+    }
+
     .age-results,
     .weekly-progress {
       grid-template-columns: 1fr;
@@ -324,8 +396,6 @@
     }
   }
 </style>
-
-
 
   <!-- Favicon (optional) -->
   <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
@@ -338,26 +408,28 @@
       <a href="#solar-system" class="nav-link">Solar System</a>
       <a href="#rotoscope" class="nav-link">Rotoscope</a>
       <a href="#planets" class="nav-link">Planets</a>
+      <a href="#about" class="nav-link">About</a>
     </div>
   </nav>
 
   <header id="home">
     <h1>Multimedia and Authoring</h1>
-    <p class="subtitle">Sachzie Sofia P. Ilagan</p>
-    <p class="subtitle">BSIT-NS-2A</p>
   </header>
 
   <main>
+
     <section id="solar-system" class="video-section">
       <h2>Solar System</h2>
       <video controls width="70%">
-        <source src="assets/outer_space.mp4" type="video/mp4">
+        <source src="Blendervids/solar system.mp4" type="video/mp4" autoplay muted loop playsinline>
         Your browser does not support the video tag.
       </video>
       <div class="video-description" style="margin-right: 20px;">
         <br></br>
         <p>
-          With the use of Blender explore the wonders of our solar system through this captivating 3D journey into outer space. 
+          Tool Used: Blender <br>
+          A captivating 3D animation of the solar system, crafted using Blender. This video showcases the planets in motion with accurate orbits, realistic textures, 
+and dynamic lighting — offering an educational and visually engaging tour through our cosmic neighborhood.
         </p>
       </div>
     </section>
@@ -476,120 +548,151 @@
       <div id="ageResults" class="age-results"></div>
     </section>
 
-  <section id="planets" class="planet-info">
-  <h2>Planet Information</h2>
-  <div class="artworks">
+    <section id="planets" class="planet-info">
+      <h2>Planet Information</h2>
+      <div class="artworks">
 
-    <div class="art-card">
-      <div class="planet-video">
-        <video src="Blendervids/mercury.mp4" autoplay muted loop playsinline></video>
-      </div>
-      <div class="planet-info-content">
-        <p><strong>Planet:</strong> Mercury</p>
-        <p><strong>Age:</strong> ~4.5 billion years</p>
-        <p><strong>Orbital Period:</strong> 88 Earth days</p>
-        <p><strong>Day Length:</strong> 59 Earth days</p>
-      </div>
-    </div>
-
-    <div class="art-card">
-      <div class="planet-video">
-        <video src="Blendervids/venus.mp4" autoplay muted loop playsinline></video>
-      </div>
-      <div class="planet-info-content">
-        <p><strong>Planet:</strong> Venus</p>
-        <p><strong>Age:</strong> ~4.5 billion years</p>
-        <p><strong>Orbital Period:</strong> 225 Earth days</p>
-        <p><strong>Day Length:</strong> 243 Earth days</p>
-      </div>
-    </div>
-
-    <div class="art-card">
-      <div class="planet-video">
-        <video src="Blendervids/earth.mp4" autoplay muted loop playsinline></video>
-      </div>
-      <div class="planet-info-content">
-        <p><strong>Planet:</strong> Earth</p>
-        <p><strong>Age:</strong> ~4.54 billion years</p>
-        <p><strong>Orbital Period:</strong> 365.25 days</p>
-        <p><strong>Day Length:</strong> 24 hours</p>
-      </div>
-    </div>
-
-    <div class="art-card">
-      <div class="planet-video">
-        <video src="Blendervids/mars.mp4" autoplay muted loop playsinline></video>
-      </div>
-      <div class="planet-info-content">
-        <p><strong>Planet:</strong> Mars</p>
-        <p><strong>Age:</strong> ~4.6 billion years</p>
-        <p><strong>Orbital Period:</strong> 687 Earth days</p>
-        <p><strong>Day Length:</strong> 24.6 hours</p>
-      </div>
-    </div>
-
-    <div class="art-card">
-      <div class="planet-video">
-        <video src="Blendervids/jupiter.mp4" autoplay muted loop playsinline></video>
-      </div>
-      <div class="planet-info-content">
-        <p><strong>Planet:</strong> Jupiter</p>
-        <p><strong>Age:</strong> ~4.6 billion years</p>
-        <p><strong>Orbital Period:</strong> 12 Earth years</p>
-        <p><strong>Day Length:</strong> 9.9 hours</p>
-      </div>
-    </div>
-
-    <div class="art-card">
-      <div class="planet-video">
-        <video src="Blendervids/saturn.mp4" autoplay muted loop playsinline></video>
-      </div>
-      <div class="planet-info-content">
-        <p><strong>Planet:</strong> Saturn</p>
-        <p><strong>Age:</strong> ~4.5 billion years</p>
-        <p><strong>Orbital Period:</strong> 29 Earth years</p>
-        <p><strong>Day Length:</strong> 10.7 hours</p>
-      </div>
-    </div>
-
-    <div class="art-card">
-      <div class="planet-video">
-        <video src="Blendervids/uranus.mp4" autoplay muted loop playsinline></video>
-      </div>
-      <div class="planet-info-content">
-        <p><strong>Planet:</strong> Uranus</p>
-        <p><strong>Age:</strong> ~4.5 billion years</p>
-        <p><strong>Orbital Period:</strong> 84 Earth years</p>
-        <p><strong>Day Length:</strong> 17.2 hours</p>
-      </div>
-    </div>
-
-    <div class="art-card">
-      <div class="planet-video">
-        <video src="Blendervids/neptune.mp4" autoplay muted loop playsinline></video>
-      </div>
-      <div class="planet-info-content">
-        <p><strong>Planet:</strong> Neptune</p>
-        <p><strong>Age:</strong> ~4.5 billion years</p>
-        <p><strong>Orbital Period:</strong> 165 Earth years</p>
-        <p><strong>Day Length:</strong> 16.1 hours</p>
-      </div>
-    </div>
-
-    <div class="art-card">
-      <div class="planet-video">
-        <video src="Blendervids/pluto.mp4" autoplay muted loop playsinline></video>
-      </div>
-      <div class="planet-info-content">
-        <p><strong>Planet:</strong> Pluto</p>
-        <p><strong>Age:</strong> ~4.5 billion years</p>
-        <p><strong>Orbital Period:</strong> 248 Earth years</p>
-        <p><strong>Day Length:</strong> 153.3 hours</p>
-      </div>
-    </div>
-
+        <div class="art-card">
+  <div class="planet-video">
+    <video src="Blendervids/moon.mp4" autoplay muted loop playsinline></video>
   </div>
-</section>
+  <div class="planet-info-content">
+    <p><strong>Celestial Body:</strong> Moon</p>
+    <p><strong>Age:</strong> ~4.53 billion years</p>
+    <p><strong>Orbital Period:</strong> 27.3 days</p>
+    <p><strong>Day Length:</strong> 29.5 Earth days</p>
+  </div>
+</div>
+        <div class="art-card">
+          <div class="planet-video">
+            <video src="Blendervids/mercury.mp4" autoplay muted loop playsinline></video>
+          </div>
+          <div class="planet-info-content">
+            <p><strong>Planet:</strong> Mercury</p>
+            <p><strong>Age:</strong> ~4.5 billion years</p>
+            <p><strong>Orbital Period:</strong> 88 Earth days</p>
+            <p><strong>Day Length:</strong> 59 Earth days</p>
+          </div>
+        </div>
+
+        <div class="art-card">
+          <div class="planet-video">
+            <video src="Blendervids/venus.mp4" autoplay muted loop playsinline></video>
+          </div>
+          <div class="planet-info-content">
+            <p><strong>Planet:</strong> Venus</p>
+            <p><strong>Age:</strong> ~4.5 billion years</p>
+            <p><strong>Orbital Period:</strong> 225 Earth days</p>
+            <p><strong>Day Length:</strong> 243 Earth days</p>
+          </div>
+        </div>
+
+        <div class="art-card">
+          <div class="planet-video">
+            <video src="Blendervids/earth.mp4" autoplay muted loop playsinline></video>
+          </div>
+          <div class="planet-info-content">
+            <p><strong>Planet:</strong> Earth</p>
+            <p><strong>Age:</strong> ~4.54 billion years</p>
+            <p><strong>Orbital Period:</strong> 365.25 days</p>
+            <p><strong>Day Length:</strong> 24 hours</p>
+          </div>
+        </div>
+
+        <div class="art-card">
+          <div class="planet-video">
+            <video src="Blendervids/mars.mp4" autoplay muted loop playsinline></video>
+          </div>
+          <div class="planet-info-content">
+            <p><strong>Planet:</strong> Mars</p>
+            <p><strong>Age:</strong> ~4.6 billion years</p>
+            <p><strong>Orbital Period:</strong> 687 Earth days</p>
+            <p><strong>Day Length:</strong> 24.6 hours</p>
+          </div>
+        </div>
+
+        <div class="art-card">
+          <div class="planet-video">
+            <video src="Blendervids/jupiter.mp4" autoplay muted loop playsinline></video>
+          </div>
+          <div class="planet-info-content">
+            <p><strong>Planet:</strong> Jupiter</p>
+            <p><strong>Age:</strong> ~4.6 billion years</p>
+            <p><strong>Orbital Period:</strong> 12 Earth years</p>
+            <p><strong>Day Length:</strong> 9.9 hours</p>
+          </div>
+        </div>
+
+        <div class="art-card">
+          <div class="planet-video">
+            <video src="Blendervids/saturn.mp4" autoplay muted loop playsinline></video>
+          </div>
+          <div class="planet-info-content">
+            <p><strong>Planet:</strong> Saturn</p>
+            <p><strong>Age:</strong> ~4.5 billion years</p>
+            <p><strong>Orbital Period:</strong> 29 Earth years</p>
+            <p><strong>Day Length:</strong> 10.7 hours</p>
+          </div>
+        </div>
+
+        <div class="art-card">
+          <div class="planet-video">
+            <video src="Blendervids/uranus.mp4" autoplay muted loop playsinline></video>
+          </div>
+          <div class="planet-info-content">
+            <p><strong>Planet:</strong> Uranus</p>
+            <p><strong>Age:</strong> ~4.5 billion years</p>
+            <p><strong>Orbital Period:</strong> 84 Earth years</p>
+            <p><strong>Day Length:</strong> 17.2 hours</p>
+          </div>
+        </div>
+
+        <div class="art-card">
+          <div class="planet-video">
+            <video src="Blendervids/neptune.mp4" autoplay muted loop playsinline></video>
+          </div>
+          <div class="planet-info-content">
+            <p><strong>Planet:</strong> Neptune</p>
+            <p><strong>Age:</strong> ~4.5 billion years</p>
+            <p><strong>Orbital Period:</strong> 165 Earth years</p>
+            <p><strong>Day Length:</strong> 16.1 hours</p>
+          </div>
+        </div>
+
+        <div class="art-card">
+          <div class="planet-video">
+            <video src="Blendervids/pluto.mp4" autoplay muted loop playsinline></video>
+          </div>
+          <div class="planet-info-content">
+            <p><strong>Planet:</strong> Pluto</p>
+            <p><strong>Age:</strong> ~4.5 billion years</p>
+            <p><strong>Orbital Period:</strong> 248 Earth years</p>
+            <p><strong>Day Length:</strong> 153.3 hours</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="about" class="about-section">
+      <h2>About Me</h2>
+      <div class="about-content">
+        <div class="about-image">
+          <img src="images/ishie.jpg" alt="Sachzie Sofia P. Ilagan" />
+        </div>
+        <div class="about-text">
+          <h3>Hello, I'm <span class="highlight">Sachzie Sofia Ilagan</span></h3>
+<p>
+  I am a student from the <span class="highlight">Technological University of the Philippines</span>, currently enrolled in <span class="highlight">BSIT-NS-2A</span>. 
+</p>
+<p>
+  Through this portfolio, I present some of my early works in Blender — from simulating the solar system to crafting simple visual storytelling pieces. 
+   One of the highlights of my journey is experimenting with rotoscope animation— a frame-by-frame technique where I trace over video footage to create stylized, hand-drawn motion. This project helped me understand movement, 
+   timing, and visual rhythm while blending traditional animation principles with digital tools.
+</p>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer>
